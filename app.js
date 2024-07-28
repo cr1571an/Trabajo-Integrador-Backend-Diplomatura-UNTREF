@@ -17,9 +17,25 @@ app.get('/products', async (req, res) => {
       const products = await Product.find({});
       res.json(products);
     } catch (error) {
-      res.status(500).send('Error al obtener los productos de informatica',error);
+      console.error(error);
+      res.status(500).send('Error al obtener los productos de informatica.');
     }
 })
+
+app.get('/product/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const product = await Product.findById(id);
+      if (product) return res.json(product);
+      return res.status(404).json({ message: 'Producto no encontrado.' });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Error del servidor.' });
+    }
+});
+  
 
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`)
