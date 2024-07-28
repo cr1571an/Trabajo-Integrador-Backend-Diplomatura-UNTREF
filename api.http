@@ -1,0 +1,2 @@
+### Mostrar todos los productos de computacion.
+GET http://localhost:3000/products
