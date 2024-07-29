@@ -121,6 +121,10 @@ app.delete('/products/:id', async (req, res) => {
   }
 })
 
+app.use((req, res) => {
+    res.status(404).json({ message: 'Ruta no encontrada' })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`)
 })
