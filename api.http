@@ -1,0 +1,32 @@
+### Mostrar todos los productos de computacion.
+GET http://localhost:3000/products
+
+### Mostrar una producto por id
+GET http://localhost:3000/product/66a6ef27c27a54396ac85de4
+
+### Mostrar una producto por codigo de producto
+GET http://localhost:3000/productcod/5
+
+### Busqueda parcial por nombre de producto
+GET http://localhost:3000/products/search?name=cla
+
+### Agregar un producto
+POST http://localhost:3000/products/
+content-type: application/json
+
+{
+  "codigo": 32,
+  "nombre": "Monitor Led Samsung",
+  "precio": 135.99,
+  "categoria": "Monitor"
+}
+
+### Modificar/Actualizar un producto
+PATCH http://localhost:3000/products/66a6ef27c27a54396ac85de4
+
+{
+    "precio": 1000.00
+}
+
+### Borrar una producto por id
+DELETE http://localhost:3000/products/66a6ef27c27a54396ac85de4
