@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const morgan = require('morgan')
 
 const connectDB = require('./database')
@@ -24,6 +25,10 @@ app.get('/products', async (req, res) => {
 
 app.get('/product/:id', async (req, res) => {
     const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'ID de producto no válido' });
+    }
   
     try {
       const product = await Product.findById(id);
@@ -72,6 +77,27 @@ app.post('/products', async (req, res) => {
     res.status(201).json(newProduct)
   } catch {
     return res.status(500).json({ message: 'Error al agregar el producto' })
+  }
+})
+
+app.patch('/products/:id', async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'ID de producto no válido' });
+  }
+
+  try {
+    const product = await Product.findByIdAndUpdate(id, req.body, {
+      new: true,
+    })
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado' })
+    }
+    res.json({ message: 'Producto actualizado', product })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: 'Error al actualizar la producto' })
   }
 })
 
