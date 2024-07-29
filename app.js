@@ -101,6 +101,26 @@ app.patch('/products/:id', async (req, res) => {
   }
 })
 
+
+app.delete('/products/:id', async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'ID de producto no válido' });
+  }
+
+  try {
+    const resultado = await Product.findByIdAndDelete(id)
+    if (resultado) {
+      res.json({ message: 'Producto borrada con exito' })
+    } else {
+      res.status(404).json({ message: 'Producto no encontrado.' })
+    }
+  } catch (error) {
+    return res.status(500).json({ message: 'Error al borrar el producto' })
+  }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`)
 })
