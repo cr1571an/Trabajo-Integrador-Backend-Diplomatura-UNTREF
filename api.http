@@ -6,3 +6,6 @@ GET http://localhost:3000/product/66a50e38e8b1bc11e86851a3
 
 ### Mostrar una producto por codigo de producto
 GET http://localhost:3000/productcod/5
+
+### Busqueda parcial por nombre de producto
+GET http://localhost:3000/products/search?name=cla

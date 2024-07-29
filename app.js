@@ -49,6 +49,23 @@ app.get('/productcod/:codigo', async (req, res) => {
   }
 })
 
+
+app.get('/products/search', async (req, res) => {
+  const { name } = req.query;
+  try {
+    const products = await Product.find({ nombre: { $regex: name, $options: 'i' }});
+    if (products.length > 0) {
+      return res.json(products);
+    } else {
+      return res.status(404).json({ message: 'Nombre no encontrado.' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error del servidor.' });
+  }
+});
+
+
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`)
 })
