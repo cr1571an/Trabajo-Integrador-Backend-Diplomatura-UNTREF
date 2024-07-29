@@ -9,3 +9,15 @@ GET http://localhost:3000/productcod/5
 
 ### Busqueda parcial por nombre de producto
 GET http://localhost:3000/products/search?name=cla
+
+### Agregar un producto
+POST http://localhost:3000/products/
+content-type: application/json
+
+{
+  "codigo": 32,
+  "nombre": "Monitor Led Samsung",
+  "precio": 135.99,
+  "categoria": "Monitor"
+}
+

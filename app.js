@@ -63,8 +63,17 @@ app.get('/products/search', async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: 'Error del servidor.' });
   }
-});
+})
 
+app.post('/products', async (req, res) => {
+  const newProduct = new Product(req.body)
+  try {
+    await newProduct.save()
+    res.status(201).json(newProduct)
+  } catch {
+    return res.status(500).json({ message: 'Error al agregar el producto' })
+  }
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`)
