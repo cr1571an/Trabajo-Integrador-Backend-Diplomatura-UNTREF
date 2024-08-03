@@ -2,7 +2,7 @@
 GET http://localhost:3000/products
 
 ### Mostrar una producto por id
-GET http://localhost:3000/product/66a6ef27c27a54396ac85de4
+GET http://localhost:3000/product/66a50e38e8b1bc11e8685195
 
 ### Mostrar una producto por codigo de producto
 GET http://localhost:3000/productcod/5
@@ -22,7 +22,8 @@ content-type: application/json
 }
 
 ### Modificar/Actualizar un producto
-PATCH http://localhost:3000/products/66a6ef27c27a54396ac85de4
+PATCH http://localhost:3000/products/66a50e38e8b1bc11e8685195
+content-type: application/json
 
 {
     "precio": 1000.00
