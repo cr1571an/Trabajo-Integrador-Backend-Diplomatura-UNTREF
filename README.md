@@ -1,109 +1,72 @@
 # Proyecto Integrador: CRUD con Node.js y MongoDB
-
 ## Descripción del Proyecto
+Este proyecto es una aplicación basada en Node.js y MongoDB que permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en una base de datos. La base de datos MongoDB se encuentra alojada en un clúster de MongoDB Atlas y la aplicación Node.js se conecta a ella. Utiliza el dataset JSON computacion.json para simular una colección de productos de computación, que fue importado en MongoDB.
 
-En este proyecto, desarrollarás una aplicación basada en Node.js y MongoDB que permita realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en una base de datos. La base de datos MongoDB deberá estar generada en el clúster de mongodb.com y tu aplicación Node.js se conectará a ella.
+## Dataset Utilizado
 
-Podrás usar alguno de los datasets JSON proporcionados, o crear uno propio que contenga entre 20 y 30 productos, distribuidos en varias categorías.
-
-## Datasets Proporcionados
-
-- **computacion.json**: Productos de computación, partes, accesorios y repuestos.
-- **electronicos.json**: Productos electrónicos de consumo.
-- **granjas.json**: Frutas y verduras.
-- **mobiliario.json**: Muebles de hogar y oficina.
-- **prendas.json**: Prendas de vestir.
-- **supermercado.json**: Productos de supermercado.
+- **computacion.json**: Productos de computación, partes, accesorios y repuestos
 
 ## Funcionalidades del CRUD
-
-1. **Obtener todos los productos**
+1. **Obtener todos los productos**: 
    - Endpoint para leer todos los productos de la colección.
-   - Control de errores para manejar la indisponibilidad de la base de datos.
-
-2. **Obtener un producto**
+2. **Obtener un producto**: 
    - Endpoint para obtener un producto por su ID.
-   - Control de errores para manejar casos en que el producto no se encuentre o la base de datos no esté disponible.
-
-3. **Filtrar productos**
+3. **Filtrar productos**: 
    - Endpoint para filtrar productos por nombre (búsqueda parcial).
-   - Control de errores para manejar coincidencias no encontradas o problemas de conexión.
-
-4. **Agregar un nuevo producto**
+4. **Agregar un nuevo producto**: 
    - Endpoint para agregar un nuevo producto.
-   - Validación y control de errores.
-   - Generación de un código numérico para el nuevo producto.
-
-5. **Modificar el precio de un producto**
+5. **Modificar el precio de un producto**: 
    - Endpoint para cambiar el precio de un producto usando PATCH.
-   - Control de errores para manejar problemas durante la actualización.
-     
-6. **Borrar un producto**
+6. **Borrar un producto**: 
    - Endpoint para borrar un producto usando DELETE.
-   - Control de errores para manejar problemas durante el borrado.
+   - Control de errores: Manejo de errores en la estructura de las solicitudes y respuestas, control de acceso a rutas no existentes con respuestas apropiadas.
 
-7. **Control de errores**
-   - Manejo de errores en la estructura de las solicitudes y respuestas.
-   - Respuesta adecuada con mensajes y códigos de error específicos.
-   - Control de acceso a rutas no existentes con respuestas apropiadas.
+## Requisitos
 
-## Fechas Importantes
+- Node.js
+- npm
+- Cuenta en MongoDB Atlas
 
-- **Avance del Proyecto**: 11 de julio de 2024
-  - Tener listos los endpoints básicos, el control de rutas inexistentes, la conexión con MongoDB y los métodos GET funcionando.
+## Instalación
 
-- **Presentación Final**: 30 de julio de 2024
-  - Proyecto 100% funcional.
+Clona el repositorio:
+```bash
+
+git clone https://github.com/cr1571an/Trabajo-Integrador-Backend-Diplomatura-UNTREF.git
+cd repositorio
+```
+**Instala las dependencias**:
+
+```bash
+npm install
+```
+## Configura las variables de entorno en un archivo .env (ejemplo de configuración):
+
+- MONGODB_URI=mongodb+srv://usuario:contraseña@cluster.mongodb.net/nombreBaseDatos?retryWrites=true&w=majority
+- PORT=3000
+- DATABASE_NAME = productsdb
+
+## Inicia la aplicación:
+
+```bash
+npm start
+```
+## Endpoints
+
+- GET /productos: Obtener todos los productos.
+- GET /productos/:id: Obtener un producto por su ID.
+- GET /productos/buscar/search?name=teclado Filtrar productos por nombre.
+- POST /productos: Agregar un nuevo producto.
+- PATCH /productos/:id: Modificar el precio de un producto.
+- DELETE /productos/:id: Borrar un producto.
 
 ## Estructura del Repositorio
-
 ```plaintext
-/json
-  - computacion.json
-  - electronicos.json
-  - granjas.json
-  - mobiliario.json
-  - prendas.json
-  - supermercado.json
-/README.md
-/app.js
-/database.js
-/product.js
+
+/README.md: Archivo con la descripción del proyecto.
+/app.js: Archivo principal de la aplicación Node.js donde se define la lógica de rutas y la conexión a la base de datos.
+/database.js: Archivo para configurar la conexión a la base de datos MongoDB.
+/product.js: Archivo que contiene el esquema (schema) del producto utilizando Mongoose.
+/api.http: Archivo con los endpoints disponibles para las consultas Http.
+
 ```
-
-### Descripción de Archivos
-
-- **/json**: Carpeta que contiene los datasets JSON.
-- **/README.md**: Archivo con la descripción del proyecto.
-- **/app.js**: Archivo principal de la aplicación Node.js donde se define toda la lógica de rutas y la conexión a la base de datos.
-- **/database.js**: Archivo para configurar la conexión a la base de datos MongoDB.
-- **/product.js**: Archivo que contiene el esquema (schema) del producto utilizando Mongoose.
-
-## Instrucciones de Entrega
-
-1. **Fork** el repositorio desde [aquí](https://github.com/FabioDrizZt/Trabajo-Integrador-Backend-Diplomatura-UNTREF/fork).
-2. **Clona** tu fork en tu máquina local.
-   ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio-fork.git
-   ```
-3. Realiza los cambios y sube tu código a tu fork.
-4. **Sube** los cambios a tu fork.
-   ```bash
-   git add .
-   git commit -m "Descripción de los cambios"
-   git push origin main
-   ```
-
-5. Agrega a los siguientes usuarios como colaboradores en tu repositorio:
-   - [FabioDrizZt](https://github.com/FabioDrizZt)
-   - [JuanNebbia](https://github.com/JuanNebbia)
-   - [NKrein](https://github.com/NKrein)
-   - [mathiasbarbosa](https://github.com/mathiasbarbosa)
-
-## Conclusión
-
-Este proyecto te permitirá aplicar tus conocimientos en desarrollo backend con Node.js y MongoDB, implementando un CRUD completo con control de errores y buenas prácticas. ¡Buena suerte y adelante con el desarrollo!
-
----
-
-Recuerda mantener tu código limpio, documentado y seguir las buenas prácticas de desarrollo. ¡Nos vemos en clase para revisar tu progreso el 11 de julio de 2024!
